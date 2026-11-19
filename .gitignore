@@ -1,0 +1,9 @@
+# Schlüssel und Zugangsdaten niemals einchecken
+*.key
+*.pem
+id_*
+*.ppk
+.env
+
+# Rohdateien vor dem Schwärzen
+*.bmp
