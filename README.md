@@ -12,7 +12,7 @@ Das Homelab läuft auf Ubuntu (Debian-Familie), diese VM auf **Oracle Linux 9** 
 | Anbieter / Region | Oracle Cloud Infrastructure, eu-zurich-1 (Always Free) |
 | Instanz | `VM-lab-micro-02` (Neuaufbau 19.11.), Shape `VM.Standard.E2.1.Micro` (1 OCPU, 1 GB RAM, x86_64) |
 | Betriebssystem | Oracle Linux Server 9 (`platform:el9`), Kernel UEK 8 |
-| Netz | VCN `vcn-lab-micro-01`, öffentliches Subnetz `subnet-micro-public-01` (10.0.0.0/24) |
+| Netz | VCN `vcn-lab-micro-02` (10.0.0.0/16), öffentliches Subnetz `subnet-lab-micro-02`; das erste VCN `vcn-lab-micro-01` wurde mit der ersten VM gelöscht |
 | Zugriff | SSH nur per Schlüssel, Admin-Benutzer `dfelux` (sudo mit Passwort), `opc` als Rückfallweg; kein Root-Login, keine Passwort-Anmeldung; SSH nur von der eigenen IP (Security List) und firewalld nur mit `ssh`; öffentliche IP (ephemeral, hier nicht veröffentlicht) |
 | Speicher | RAM 945 MiB nutzbar (kdump-Reservierung entfernt), Swap 2,5 GiB (Standard 0,5 GiB + 2 GiB), Boot Volume 46,6 GB, Verschlüsselung durch Oracle verwaltet, In-Transit-Verschlüsselung aktiv |
 | Agent-Plugins | Instance Monitoring, Run Command (Dynamic Group vorbereitet), Cloud Guard Workload Protection; Custom Logs auf E2.1.Micro nicht unterstützt |

@@ -9,7 +9,7 @@ Datum: 19.11.2026 · Anlass: [Störung SSH-Timeout](02-stoerung-ssh-timeout.md)
 
 ## Schritte
 
-1. **Instanz** `VM-lab-micro-02`: Oracle Linux 9, `VM.Standard.E2.1.Micro`, **bestehendes** VCN `vcn-lab-micro-01` / `subnet-micro-public-01`, öffentliche IP, neues Schlüsselpaar (`ssh-key-2026-11-19`, privater Schlüssel im Passwortmanager).
+1. **Instanz** `VM-lab-micro-02`: Oracle Linux 9, `VM.Standard.E2.1.Micro`, VCN `vcn-lab-micro-02` / `subnet-lab-micro-02`, öffentliche IP, neues Schlüsselpaar (`ssh-key-2026-11-19`, privater Schlüssel im Passwortmanager).
 2. **Agent-Plugins prüfen**: Monitoring und Run Command *Running* – Gegenbeweis zur alten VM. Custom Logs Monitoring: „Not supported“ auf E2.1.Micro (Shape-Einschränkung, kein Fehler).
 3. **Run Command vorbereiten**: Dynamic Group `dg-lab-runcommand` mit Regel auf das Compartment (gilt für jede künftige VM) und Richtlinie
    ```
