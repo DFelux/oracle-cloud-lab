@@ -14,9 +14,10 @@ Das Homelab läuft auf Ubuntu (Debian-Familie), diese VM auf **Oracle Linux 9** 
 | Betriebssystem | Oracle Linux Server 9 (`platform:el9`), Kernel UEK 8 |
 | Netz | VCN `vcn-lab-micro-01`, öffentliches Subnetz `subnet-micro-public-01` (10.0.0.0/24) |
 | Zugriff | SSH nur per Schlüssel, Benutzer `opc`, öffentliche IP (ephemeral, hier nicht veröffentlicht) |
-| Speicher | Swap 2,5 GiB (Standard 0,5 GiB + 2 GiB), Boot Volume 46,6 GB, Verschlüsselung durch Oracle verwaltet, In-Transit-Verschlüsselung aktiv |
+| Speicher | RAM 945 MiB nutzbar (kdump-Reservierung entfernt), Swap 2,5 GiB (Standard 0,5 GiB + 2 GiB), Boot Volume 46,6 GB, Verschlüsselung durch Oracle verwaltet, In-Transit-Verschlüsselung aktiv |
 | Agent-Plugins | Instance Monitoring, Run Command (Dynamic Group vorbereitet), Cloud Guard Workload Protection; Custom Logs auf E2.1.Micro nicht unterstützt |
-| Notfallzugang | serielle Konsole (Passwort für `opc`), Boot-Volume-Backup vor Updates |
+| Notfallzugang | serielle Konsole (Passwort für `opc`), Boot-Volume-Backup vor Updates, Journal dauerhaft gespeichert |
+| Betrieb | `dnf-makecache.timer`, kdump und PCP deaktiviert; Updates nur von Hand |
 
 ## Kostenkontrolle
 
@@ -31,12 +32,13 @@ Das Homelab läuft auf Ubuntu (Debian-Familie), diese VM auf **Oracle Linux 9** 
 | 01 | [Einrichtung: Konto, Netz, Instanz, SSH](docs/01-einrichtung.md) | erledigt |
 | 02 | [Störung: SSH-Timeout – Eingrenzung mit Path Analyzer](docs/02-stoerung-ssh-timeout.md) | geschlossen |
 | 03 | [Neuaufbau mit Backup, Notfallzugang und Swap](docs/03-neuaufbau.md) | erledigt |
-| 04 | SSH-Härtung (eigener Admin-Benutzer, nur Schlüssel, kein Root-Login) | geplant |
-| 05 | Host-Firewall mit firewalld, Security List auf eigene IP | geplant |
-| 06 | Vergleich Ubuntu ↔ Oracle Linux (apt/dnf, ufw/firewalld, SELinux) | geplant |
+| 04 | [Störung: VM hängt wiederholt – dnf-makecache erschöpft den Arbeitsspeicher](docs/04-stoerung-dnf-makecache.md) | geschlossen |
+| 05 | SSH-Härtung (eigener Admin-Benutzer, nur Schlüssel, kein Root-Login) | geplant |
+| 06 | Host-Firewall mit firewalld, Security List auf eigene IP | geplant |
+| 07 | Vergleich Ubuntu ↔ Oracle Linux (apt/dnf, ufw/firewalld, SELinux) | geplant |
 
 ## Bekannte Grenzen
 
 - Ampere A1 (Arm, mehr RAM) war bei Erstellung nicht verfügbar („Out of capacity“, Zürich hat nur eine Availability Domain). Die A1-Konfiguration ist als Resource-Manager-Stack (Terraform) gespeichert; ein erneuter Versuch am 19.11. scheiterte ebenfalls („Out of host capacity“).
-- E2.1.Micro hat sehr wenig Arbeitsspeicher: `dnf update` braucht erweiterten Swap und den Ausschluss großer Repositories.
+- E2.1.Micro hat sehr wenig Arbeitsspeicher: `dnf update` braucht erweiterten Swap und den Ausschluss großer Repositories; der automatische Metadaten-Abgleich (`dnf-makecache.timer`) hat die VM wiederholt lahmgelegt und ist deshalb abgeschaltet ([Kapitel 04](docs/04-stoerung-dnf-makecache.md)).
 - Always-Free-Instanzen mit dauerhaft geringer Auslastung können von Oracle zurückgefordert werden.

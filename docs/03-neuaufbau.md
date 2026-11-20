@@ -52,11 +52,13 @@ Out of memory: Killed process 9238 (dnf) total-vm:3400764kB, anon-rss:359416kB .
 ## Beobachtung: nutzbarer RAM verdoppelt
 Vor dem Update (Image-Kernel): **498 MiB** nutzbar. Nach dem Update (UEK 8): **945 MiB**. Der alte Kernel reservierte vermutlich einen großen Teil für kdump (`crashkernel`) – passend zu `kdump FAILED` im Bootprotokoll der alten VM. Prüfung offen: `cat /proc/cmdline`.
 
+> **Nachtrag 20.11.:** Geprüft. Auch der neue Kernel bootete später wieder mit `crashkernel=1G-64G:448M` und nur 498 MiB. Die Einstellung `auto_reset_crashkernel yes` in `/etc/kdump.conf` trägt die Reservierung wahrscheinlich selbst wieder ein. kdump wurde deaktiviert und die Reservierung entfernt → [Kapitel 04](04-stoerung-dnf-makecache.md).
+
 ## Offene Punkte
 - `tuned` + `tuned-profiles-oci` gezielt aktualisieren (Agent vorher stoppen)
 - `ol9_oci_included` und `ol9_ksplice` ggf. dauerhaft deaktivieren
-- Kernel-Parameter `crashkernel` prüfen
-- Nächstes Kapitel: eigener Admin-Benutzer, SSH-Härtung
+- ~~Kernel-Parameter `crashkernel` prüfen~~ → erledigt in Kapitel 04
+- Nächstes Kapitel: eigener Admin-Benutzer, SSH-Härtung (jetzt Kapitel 05)
 
 ## Nachweise
 Öffentliche IPs in allen Bildern geschwärzt.

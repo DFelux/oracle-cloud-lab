@@ -69,6 +69,8 @@ Erster Versuch mit Ziel = private IP `10.0.0.40`: „No route“ – **Fehler in
 
 Die exakte Ursache wird nicht mehr ermittelt: ohne Konsolen-Passwort und ohne Backup hätte eine Analyse im Rettungsmodus mehr gekostet als der Neuaufbau einer Lab-VM ohne Daten (Kosten/Nutzen).
 
+> **Nachtrag 20.11.:** Auf der neuen VM trat dasselbe Bild erneut auf, diesmal mit Beleg: Der OOM-Killer beendete `dnf` aus `dnf-makecache.service`. Damit ist diese Ursache auch für die alte VM naheliegend → [04 · Störung dnf-makecache](04-stoerung-dnf-makecache.md).
+
 ## Lösung
 Neuaufbau als `VM-lab-micro-02` mit den unten genannten Vorkehrungen → [03 · Neuaufbau](03-neuaufbau.md). Alte VM gelöscht.
 
