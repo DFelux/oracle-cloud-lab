@@ -88,24 +88,24 @@ Die Meldung der Gegenprobe nennt nur noch `publickey`. Vor dem Abschalten von GS
 ![Anmeldung ohne Schlüssel wird abgewiesen](../screenshots/38-vm02-anmeldung-ohne-schluessel-abgewiesen.png)
 
 ### 5. Client-Konfiguration
-Zwei Kurznamen in `C:\Users\<benutzer>\.ssh\config`, damit `ssh oracleadmin` bzw. `ssh oracle` genügt:
+Zwei Kurznamen in `C:\Users\<benutzer>\.ssh\config`, damit `ssh oracle` bzw. `ssh oracle-admin` genügt:
 ```
-Host oracleadmin
+Host oracle
     HostName <öffentliche-IP>
     User dfelux
     IdentityFile C:\Users\<benutzer>\.ssh\<schluessel>.key
     ServerAliveInterval 60
     ServerAliveCountMax 3
 
-Host oracle
+Host oracle-admin
     HostName <öffentliche-IP>
     User opc
     IdentityFile C:\Users\<benutzer>\.ssh\<schluessel>.key
     ServerAliveInterval 60
     ServerAliveCountMax 3
 ```
-- `oracleadmin` (eigenes Konto, `sudo` mit Passwort) ist der Weg für die tägliche Administration.
-- `oracle` (`opc`) bleibt der Rückfallweg, solange `opc` noch erlaubt ist.
+- `oracle` (`dfelux`, eigenes Konto, `sudo` mit Passwort) ist der Weg für die tägliche Arbeit.
+- `oracle-admin` (`opc`, `sudo` ohne Passwort) bleibt der Rückfallweg, solange `opc` noch erlaubt ist.
 - `ServerAliveInterval` hält die Verbindung bei Pausen offen.
 - Die Datei hat keine Endung. Notepad hängt beim Speichern gern `.txt` an, dann findet SSH sie nicht (`Could not resolve hostname oracle`).
 
