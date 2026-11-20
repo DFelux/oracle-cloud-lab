@@ -13,7 +13,7 @@ Das Homelab läuft auf Ubuntu (Debian-Familie), diese VM auf **Oracle Linux 9** 
 | Instanz | `VM-lab-micro-02` (Neuaufbau 19.11.), Shape `VM.Standard.E2.1.Micro` (1 OCPU, 1 GB RAM, x86_64) |
 | Betriebssystem | Oracle Linux Server 9 (`platform:el9`), Kernel UEK 8 |
 | Netz | VCN `vcn-lab-micro-01`, öffentliches Subnetz `subnet-micro-public-01` (10.0.0.0/24) |
-| Zugriff | SSH nur per Schlüssel, Benutzer `opc`, öffentliche IP (ephemeral, hier nicht veröffentlicht) |
+| Zugriff | SSH nur per Schlüssel, Admin-Benutzer `dfelux` (sudo mit Passwort), `opc` als Rückfallweg; kein Root-Login, keine Passwort-Anmeldung; öffentliche IP (ephemeral, hier nicht veröffentlicht) |
 | Speicher | RAM 945 MiB nutzbar (kdump-Reservierung entfernt), Swap 2,5 GiB (Standard 0,5 GiB + 2 GiB), Boot Volume 46,6 GB, Verschlüsselung durch Oracle verwaltet, In-Transit-Verschlüsselung aktiv |
 | Agent-Plugins | Instance Monitoring, Run Command (Dynamic Group vorbereitet), Cloud Guard Workload Protection; Custom Logs auf E2.1.Micro nicht unterstützt |
 | Notfallzugang | serielle Konsole (Passwort für `opc`), Boot-Volume-Backup vor Updates, Journal dauerhaft gespeichert |
@@ -33,7 +33,7 @@ Das Homelab läuft auf Ubuntu (Debian-Familie), diese VM auf **Oracle Linux 9** 
 | 02 | [Störung: SSH-Timeout – Eingrenzung mit Path Analyzer](docs/02-stoerung-ssh-timeout.md) | geschlossen |
 | 03 | [Neuaufbau mit Backup, Notfallzugang und Swap](docs/03-neuaufbau.md) | erledigt |
 | 04 | [Störung: VM hängt wiederholt – dnf-makecache erschöpft den Arbeitsspeicher](docs/04-stoerung-dnf-makecache.md) | geschlossen |
-| 05 | SSH-Härtung (eigener Admin-Benutzer, nur Schlüssel, kein Root-Login) | geplant |
+| 05 | [SSH-Härtung: eigener Admin-Benutzer, nur Schlüssel, kein Root-Login](docs/05-ssh-haertung.md) | erledigt |
 | 06 | Host-Firewall mit firewalld, Security List auf eigene IP | geplant |
 | 07 | Vergleich Ubuntu ↔ Oracle Linux (apt/dnf, ufw/firewalld, SELinux) | geplant |
 
